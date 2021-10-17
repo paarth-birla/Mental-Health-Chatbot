@@ -1,6 +1,6 @@
 # mental_fitness_solution
 
-A new Flutter project.
+Mental Health Chatbot Application to help people talk about their mental health.
 
 ## Getting Started
 
