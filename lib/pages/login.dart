@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.transparent,
                   border: Border.all(
                     color: Colors.black,
                     width: 3.0,
