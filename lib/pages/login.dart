@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:mental_fitness_solution/pages/signup.dart';
+import 'package:mental_fitness_solution/pages/welcome.dart';
 import 'package:mental_fitness_solution/widgets/bezier_container.dart';
 
 class LoginPage extends StatefulWidget {
@@ -15,25 +16,60 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   Widget _backButton() {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
-        Navigator.pop(context);
+        // Navigator.pop(context);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => WelcomePage(),
+          ),
+        );
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(left: 0, top: 10, bottom: 10),
-              child: Icon(Icons.keyboard_arrow_left, color: Colors.black),
-            ),
-            Text(
-              'Back',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
+            // Container(
+            //   decoration: BoxDecoration(
+            //     border: Border.all(
+            //       color: Colors.black,
+            //       width: 1.5,
+            //       style: BorderStyle.solid,
+            //     ),
+            //     borderRadius: BorderRadius.circular(50),
+            //   ),
+            //   padding: EdgeInsets.only(left: 0, top: 10, bottom: 10),
+            //   child: Icon(Icons.keyboard_arrow_left, color: Colors.black),
+            // ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                alignment: Alignment.center,
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 3.0,
+                  ),
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: Icon(
+                  Icons.keyboard_arrow_left,
+                  color: Colors.black,
+                  size: 30,
+                ),
               ),
-            )
+            ),
+            // Text(
+            //   'Back',
+            //   style: TextStyle(
+            //     fontSize: 12,
+            //     fontWeight: FontWeight.w500,
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -48,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
         children: <Widget>[
           Text(
             title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
           SizedBox(
             height: 10,
@@ -72,18 +108,23 @@ class _LoginPageState extends State<LoginPage> {
       padding: EdgeInsets.symmetric(vertical: 15),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-                color: Colors.grey.shade200,
-                offset: Offset(2, 4),
-                blurRadius: 5,
-                spreadRadius: 2)
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+              color: Colors.grey.shade200,
+              offset: Offset(2, 4),
+              blurRadius: 5,
+              spreadRadius: 2)
+        ],
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: const [
+            Color(0xffff9292),
+            Color(0xffffacac),
           ],
-          gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: const [Color(0xfffbb448), Color(0xfff7892b)])),
+        ),
+      ),
       child: Text(
         'Login',
         style: TextStyle(fontSize: 20, color: Colors.white),
@@ -92,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _createAccountLabel() {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => SignUpPage()));
@@ -130,17 +171,24 @@ class _LoginPageState extends State<LoginPage> {
       text: TextSpan(
           text: 'd',
           style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.w700,
-              color: Color(0xffe46b10)),
+            fontSize: 50,
+            fontWeight: FontWeight.w700,
+            color: Color(0xffe46b10),
+          ),
           children: [
             TextSpan(
               text: 'ev',
-              style: TextStyle(color: Colors.black, fontSize: 30),
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 50,
+              ),
             ),
             TextSpan(
               text: 'rnz',
-              style: TextStyle(color: Color(0xffe46b10), fontSize: 30),
+              style: TextStyle(
+                color: Color(0xffe46b10),
+                fontSize: 50,
+              ),
             ),
           ]),
     );
@@ -164,9 +212,13 @@ class _LoginPageState extends State<LoginPage> {
         child: Stack(
           children: <Widget>[
             Positioned(
-                top: -height * .15,
-                right: -MediaQuery.of(context).size.width * .4,
-                child: BezierContainer()),
+              top: -height * .15,
+              right: -MediaQuery.of(context).size.width * .4,
+              child: BezierContainer(
+                color1: Color(0xffff9292),
+                color2: Color(0xffff9292),
+              ),
+            ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: SingleChildScrollView(

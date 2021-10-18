@@ -2,10 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:mental_fitness_solution/pages/login.dart';
+import 'package:mental_fitness_solution/pages/welcome.dart';
 import 'package:mental_fitness_solution/widgets/bezier_container.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key ?key, this.title}) : super(key: key);
+  const SignUpPage({Key? key, this.title}) : super(key: key);
 
   final String? title;
 
@@ -15,20 +16,47 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   Widget _backButton() {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
-        Navigator.pop(context);
+        // Navigator.pop(context);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => WelcomePage(),
+          ),
+        );
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(left: 0, top: 10, bottom: 10),
-              child: Icon(Icons.keyboard_arrow_left, color: Colors.black),
+            // Container(
+            //   padding: EdgeInsets.only(left: 0, top: 10, bottom: 10),
+            //   child: Icon(Icons.keyboard_arrow_left, color: Colors.black),
+            // ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                alignment: Alignment.center,
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 3.0,
+                  ),
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: Icon(
+                  Icons.keyboard_arrow_left,
+                  color: Colors.black,
+                  size: 30,
+                ),
+              ),
             ),
-            Text('Back',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500))
+            // Text('Back',
+            //     style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500))
           ],
         ),
       ),
@@ -65,18 +93,23 @@ class _SignUpPageState extends State<SignUpPage> {
       padding: EdgeInsets.symmetric(vertical: 15),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-                color: Colors.grey.shade200,
-                offset: Offset(2, 4),
-                blurRadius: 5,
-                spreadRadius: 2)
+        borderRadius: BorderRadius.all(Radius.circular(5)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+              color: Colors.grey.shade200,
+              offset: Offset(2, 4),
+              blurRadius: 5,
+              spreadRadius: 2)
+        ],
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            Color(0xffa192ff),
+            Color(0xffb7acff),
           ],
-          gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [Color(0xfffbb448), Color(0xfff7892b)])),
+        ),
+      ),
       child: Text(
         'Register Now',
         style: TextStyle(fontSize: 20, color: Colors.white),
@@ -85,7 +118,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Widget _loginAccountLabel() {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => LoginPage()));
@@ -125,9 +158,7 @@ class _SignUpPageState extends State<SignUpPage> {
           style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.w700,
-              color: Color(0xffe46b10)
-          ),
-
+              color: Color(0xffe46b10)),
           children: [
             TextSpan(
               text: 'ev',
@@ -162,7 +193,10 @@ class _SignUpPageState extends State<SignUpPage> {
             Positioned(
               top: -MediaQuery.of(context).size.height * .15,
               right: -MediaQuery.of(context).size.width * .4,
-              child: BezierContainer(),
+              child: BezierContainer(
+                color1: Color(0xffa192ff),
+                color2: Color(0xffa192ff),
+              ),
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),

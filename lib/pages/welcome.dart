@@ -15,8 +15,41 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
+  Widget _getStartedButton() {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 70,
+        padding: EdgeInsets.symmetric(vertical: 13),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(
+            Radius.circular(30),
+          ),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Color(0xffdf8e33).withAlpha(100),
+                offset: Offset(2, 4),
+                blurRadius: 8,
+                spreadRadius: 2)
+          ],
+          color: Colors.black,
+        ),
+        child: Text(
+          'Get Started',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _submitButton() {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const LoginPage()));
@@ -44,7 +77,7 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   Widget _signUpButton() {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => SignUpPage()));
@@ -72,18 +105,18 @@ class _WelcomePageState extends State<WelcomePage> {
           text: 'd',
           style: GoogleFonts.portLligatSans(
             textStyle: Theme.of(context).textTheme.headline1,
-            fontSize: 30,
+            fontSize: 50,
             fontWeight: FontWeight.w700,
             color: Colors.white,
           ),
           children: [
             TextSpan(
               text: 'ev',
-              style: TextStyle(color: Colors.black, fontSize: 30),
+              style: TextStyle(color: Colors.black, fontSize: 50),
             ),
             TextSpan(
               text: 'rnz',
-              style: TextStyle(color: Colors.white, fontSize: 30),
+              style: TextStyle(color: Colors.white, fontSize: 50),
             ),
           ]),
     );
@@ -97,33 +130,88 @@ class _WelcomePageState extends State<WelcomePage> {
           padding: EdgeInsets.symmetric(horizontal: 20),
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: Colors.grey.shade200,
-                    offset: Offset(2, 4),
-                    blurRadius: 5,
-                    spreadRadius: 2)
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                  color: Colors.grey.shade200,
+                  offset: Offset(2, 4),
+                  blurRadius: 5,
+                  spreadRadius: 2)
+            ],
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xfff0b021),
+                Color(0xfff0b021),
               ],
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Color(0xfffbb448), Color(0xffe46b10)])),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+            ),
+          ),
+          // child: Column(
+          //   crossAxisAlignment: CrossAxisAlignment.center,
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     _title(),
+          //     SizedBox(
+          //       height: 80,
+          //     ),
+          //     _submitButton(),
+          //     SizedBox(
+          //       height: 20,
+          //     ),
+          //     _signUpButton(),
+          //     SizedBox(
+          //       height: 20,
+          //     ),
+          //     _getStartedButton(),
+          //   ],
+          // ),
+          child: Stack(
+            alignment: Alignment.center,
             children: [
-              _title(),
-              SizedBox(
-                height: 80,
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.20,
+                child: _title(),
               ),
-              _submitButton(),
-              SizedBox(
-                height: 20,
-              ),
-              _signUpButton(),
-              SizedBox(
-                height: 20,
+              Positioned(
+                bottom: 20,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    height: 70,
+                    padding: EdgeInsets.symmetric(vertical: 13),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(40),
+                      ),
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
+                            color: Color(0xffdf8e33).withAlpha(100),
+                            offset: Offset(2, 4),
+                            blurRadius: 8,
+                            spreadRadius: 2)
+                      ],
+                      color: Colors.black,
+                    ),
+                    child: Text(
+                      'Get Started',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

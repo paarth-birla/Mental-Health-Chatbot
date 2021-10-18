@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:mental_fitness_solution/widgets/custom_clipper.dart';
 
 class BezierContainer extends StatelessWidget {
-  const BezierContainer({Key ?key}) : super(key: key);
-
+  const BezierContainer({Key ?key, required this.color1, required this.color2}) : super(key: key);
+  final Color color1;
+  final Color color2;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +22,7 @@ class BezierContainer extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: const [Color(0xfffbb448),Color(0xffe46b10)]
+                colors: [color1,color2]
               )
             ),
         ),
