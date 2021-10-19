@@ -12,27 +12,70 @@ class Questions extends StatefulWidget {
 }
 
 class _QuestionsState extends State<Questions> {
-  Widget _title() {
+  // Widget _title() {
+  //   return RichText(
+  //     textAlign: TextAlign.center,
+  //     text: TextSpan(
+  //         text: 'd',
+  //         style: GoogleFonts.portLligatSans(
+  //           textStyle: Theme.of(context).textTheme.headline1,
+  //           fontSize: 50,
+  //           fontWeight: FontWeight.w700,
+  //           color: Colors.white,
+  //         ),
+  //         children: [
+  //           TextSpan(
+  //             text: 'ev',
+  //             style: TextStyle(color: Colors.black, fontSize: 50),
+  //           ),
+  //           TextSpan(
+  //             text: 'rnz',
+  //             style: TextStyle(color: Colors.white, fontSize: 50),
+  //           ),
+  //         ]),
+  //   );
+  // }
+
+  Widget _question(String question) {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-          text: 'd',
+        text: question,
+        style: GoogleFonts.portLligatSans(
+          textStyle: Theme.of(context).textTheme.headline1,
+          fontSize: 30,
+          fontWeight: FontWeight.w700,
+          color: Colors.black,
+        ),
+      ),
+    );
+  }
+
+  Widget _option(String option) {
+    return Container(
+      width: 150,
+      height: 150,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+          color: Colors.transparent,
+          border: Border.all(
+            color: Colors.black,
+            width: 1.5,
+            style: BorderStyle.solid,
+          ),
+          borderRadius: BorderRadius.circular(50)),
+      child: RichText(
+        textAlign: TextAlign.center,
+        text: TextSpan(
+          text: option,
           style: GoogleFonts.portLligatSans(
             textStyle: Theme.of(context).textTheme.headline1,
-            fontSize: 50,
+            fontSize: 30,
             fontWeight: FontWeight.w700,
-            color: Colors.white,
+            color: Colors.black,
           ),
-          children: [
-            TextSpan(
-              text: 'ev',
-              style: TextStyle(color: Colors.black, fontSize: 50),
-            ),
-            TextSpan(
-              text: 'rnz',
-              style: TextStyle(color: Colors.white, fontSize: 50),
-            ),
-          ]),
+        ),
+      ),
     );
   }
 
@@ -111,7 +154,37 @@ class _QuestionsState extends State<Questions> {
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   alignment: Alignment.center,
-                  child: _title(),
+                  child: Column(
+                    children: [
+                      _question('How are you?'),
+                      SizedBox(
+                        height: 100,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          _option('Yes'),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          _option('No'),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          _option('Yes'),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          _option('No'),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Positioned(

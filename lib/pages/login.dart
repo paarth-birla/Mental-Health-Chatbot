@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:mental_fitness_solution/pages/questions.dart';
 import 'package:mental_fitness_solution/pages/signup.dart';
 import 'package:mental_fitness_solution/pages/welcome.dart';
 import 'package:mental_fitness_solution/widgets/bezier_container.dart';
@@ -103,31 +104,41 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _submitButton() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.symmetric(vertical: 15),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-              color: Colors.grey.shade200,
-              offset: Offset(2, 4),
-              blurRadius: 5,
-              spreadRadius: 2)
-        ],
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: const [
-            Color(0xffff9292),
-            Color(0xffffacac),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Questions(),
+          ),
+        );
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.symmetric(vertical: 15),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Colors.grey.shade200,
+                offset: Offset(2, 4),
+                blurRadius: 5,
+                spreadRadius: 2)
           ],
+          gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: const [
+              Color(0xffff9292),
+              Color(0xffffacac),
+            ],
+          ),
         ),
-      ),
-      child: Text(
-        'Login',
-        style: TextStyle(fontSize: 20, color: Colors.white),
+        child: Text(
+          'Login',
+          style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
       ),
     );
   }

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mental_fitness_solution/pages/welcome.dart';
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const WelcomePage(),
+      home: WelcomePage(),
     );
   }
 }
