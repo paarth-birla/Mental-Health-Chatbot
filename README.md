@@ -1,6 +1,6 @@
 # mental_fitness_solution
 
-Mental Health Chatbot Application to help people talk about their mental health.
+Mental Health Chatbot Application to help people talk about their mental health. This is a free mental health consultancy service.
 
 ## Getting Started
 
