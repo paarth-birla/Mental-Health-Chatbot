@@ -1,17 +1,8 @@
-<<<<<<< HEAD
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
-
-=======
->>>>>>> 106d09e0215aa4b1145672728cc931e6d122dae5
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Settings extends StatefulWidget {
-<<<<<<< HEAD
   const Settings({Key? key}) : super(key: key);
-=======
-  Settings({Key? key}) : super(key: key);
->>>>>>> 106d09e0215aa4b1145672728cc931e6d122dae5
 
   @override
   _SettingsState createState() => _SettingsState();
@@ -95,11 +86,7 @@ class _SettingsState extends State<Settings> {
                             ),
                           ),
                         ),
-<<<<<<< HEAD
                         SizedBox(
-=======
-                        Container(
->>>>>>> 106d09e0215aa4b1145672728cc931e6d122dae5
                           height: 30.0,
                           width: 300.0,
                           child: TextFormField(
@@ -130,11 +117,7 @@ class _SettingsState extends State<Settings> {
                             ),
                           ),
                         ),
-<<<<<<< HEAD
                         SizedBox(
-=======
-                        Container(
->>>>>>> 106d09e0215aa4b1145672728cc931e6d122dae5
                           height: 30.0,
                           width: 300.0,
                           child: TextFormField(
@@ -165,11 +148,7 @@ class _SettingsState extends State<Settings> {
                             ),
                           ),
                         ),
-<<<<<<< HEAD
                         SizedBox(
-=======
-                        Container(
->>>>>>> 106d09e0215aa4b1145672728cc931e6d122dae5
                           height: 30.0,
                           width: 300.0,
                           child: TextFormField(
@@ -200,11 +179,7 @@ class _SettingsState extends State<Settings> {
                             ),
                           ),
                         ),
-<<<<<<< HEAD
                         SizedBox(
-=======
-                        Container(
->>>>>>> 106d09e0215aa4b1145672728cc931e6d122dae5
                           height: 30.0,
                           width: 300.0,
                           child: TextFormField(
@@ -228,8 +203,4 @@ class _SettingsState extends State<Settings> {
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 106d09e0215aa4b1145672728cc931e6d122dae5
