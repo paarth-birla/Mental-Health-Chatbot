@@ -24,4 +24,8 @@ class _ArticlesState extends State<Articles> {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 106d09e0215aa4b1145672728cc931e6d122dae5
