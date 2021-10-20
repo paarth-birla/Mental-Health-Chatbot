@@ -1,35 +1,30 @@
-class Question{
-  final int? id, answer;
-  final String? question;
-  final List<String>? options;
+// ignore_for_file: prefer_const_constructors
 
-  Question({this.id, this.answer, this.question, this.options});
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class Question extends StatelessWidget {
+
+  final String text;
+  const Question({ Key? key, required this.text }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.all(10),
+      child: RichText(
+      textAlign: TextAlign.center,
+      text: TextSpan(
+        text: text,
+        style: GoogleFonts.portLligatSans(
+          textStyle: Theme.of(context).textTheme.headline1,
+          fontSize: 30,
+          fontWeight: FontWeight.w700,
+          color: Colors.black,
+        ),
+      ),
+    ),
+    );
+  }
 }
-
-const List sampleData = [
-  {
-    "id": 1,
-    "question":
-        "Flutter is an open-source UI software development kit created by ______",
-    "options": ['Apple', 'Google', 'Facebook', 'Microsoft'],
-    "answer_index": 1,
-  },
-  {
-    "id": 2,
-    "question": "When google release Flutter.",
-    "options": ['Jun 2017', 'Jun 2017', 'May 2017', 'May 2018'],
-    "answer_index": 2,
-  },
-  {
-    "id": 3,
-    "question": "A memory location that holds a single letter or number.",
-    "options": ['Double', 'Int', 'Char', 'Word'],
-    "answer_index": 2,
-  },
-  {
-    "id": 4,
-    "question": "What command do you use to output data to the screen?",
-    "options": ['Cin', 'Count>>', 'Cout', 'Output>>'],
-    "answer_index": 2,
-  },
-];
