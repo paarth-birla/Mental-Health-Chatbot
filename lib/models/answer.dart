@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Answer extends StatelessWidget {
+class Answer extends StatefulWidget {
   final VoidCallback handler;
   final String answer;
   const Answer({Key? key, required this.handler, required this.answer})
       : super(key: key);
 
+  @override
+  State<Answer> createState() => _AnswerState();
+}
+
+class _AnswerState extends State<Answer> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,14 +22,20 @@ class Answer extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
           color: Colors.white,
-          width: 1,
+          width: 2,
           style: BorderStyle.solid,
         ),
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GestureDetector(
-          onTap: handler,
+          // onTap: () {
+          //   widget.handler;
+          //   setState(() {
+          //     widget.color = Colors.black;
+          //   });
+          // },
+          onTap: widget.handler,
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -34,7 +45,7 @@ class Answer extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Center(
                 child: Text(
-                  answer,
+                  widget.answer,
                   style: GoogleFonts.portLligatSans(
                     textStyle: Theme.of(context).textTheme.headline1,
                     fontSize: 20,

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mental_fitness_solution/models/quiz.dart';
 import 'package:mental_fitness_solution/pages/welcome.dart';
 
@@ -67,17 +68,20 @@ class _SurveyState extends State<Survey> {
   ];
 
   var _questionIndex = 0;
-  var _totalScore = 0;
+  var _totalScore = {};
 
   void _resetSurvey() {
     setState(() {
       _questionIndex = 0;
-      _totalScore = 0;
+      _totalScore = {};
     });
   }
 
-  void _answer(int score) {
-    _totalScore += score;
+  void _answer(int score, String answer) {
+    _totalScore[answer] = score;
+  }
+
+  void _nextQuestion() {
     setState(() {
       _questionIndex += 1;
     });
@@ -140,6 +144,8 @@ class _SurveyState extends State<Survey> {
                                           height: 60,
                                           child: GestureDetector(
                                             onTap: () {
+                                              print(_totalScore);
+                                              _resetSurvey();
                                               Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -174,6 +180,48 @@ class _SurveyState extends State<Survey> {
                 ),
               ),
             ),
+
+            _questionIndex < _questions.length
+            ? Positioned(
+              bottom: 10,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: GestureDetector(
+                  onTap: () => _nextQuestion(),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.amber,
+                        width: 1.5,
+                        style: BorderStyle.solid,
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width * 0.85,
+                        decoration: BoxDecoration(
+                            color: Colors.amber,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Center(
+                            child: Text(
+                          'Next',
+                          style: GoogleFonts.portLligatSans(
+                            textStyle: Theme.of(context).textTheme.headline1,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                          ),
+                        )),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )
+            : Container(),
           ],
         ),
       ),

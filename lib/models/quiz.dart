@@ -1,13 +1,13 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:mental_fitness_solution/models/answer.dart';
 import 'package:mental_fitness_solution/models/question.dart';
-import 'package:mental_fitness_solution/pages/welcome.dart';
 
 class Quiz extends StatelessWidget {
   final List<Map<String, Object>> questions;
   final int questionIndex;
   final Function answer;
-
   const Quiz({
     Key? key,
     required this.questions,
@@ -32,7 +32,9 @@ class Quiz extends StatelessWidget {
           return Column(
             children: [
               Answer(
-                  handler: () => answer(answerChoice['score']),
+                  handler: () {
+                    answer(answerChoice['score'], answerChoice['text'] as String);
+                    },
                   answer: answerChoice['text'] as String),
               SizedBox(
                 height: 10,
