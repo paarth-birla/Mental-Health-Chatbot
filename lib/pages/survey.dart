@@ -79,6 +79,9 @@ class _SurveyState extends State<Survey> {
 
   void _answer(int score, String answer) {
     _totalScore[answer] = score;
+    setState(() {
+      _questionIndex += 1;
+    });
   }
 
   void _nextQuestion() {
@@ -156,13 +159,22 @@ class _SurveyState extends State<Survey> {
                                             },
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                color: Colors.amberAccent,
+                                                color: Colors.black,
                                                 borderRadius:
                                                     BorderRadius.circular(20),
                                               ),
                                               child: Center(
                                                 child: Text(
                                                   'Submit',
+                                                  style: GoogleFonts
+                                                      .portLligatSans(
+                                                    textStyle: Theme.of(context)
+                                                        .textTheme
+                                                        .headline1,
+                                                    fontSize: 30,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: Colors.white,
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -180,48 +192,6 @@ class _SurveyState extends State<Survey> {
                 ),
               ),
             ),
-
-            _questionIndex < _questions.length
-            ? Positioned(
-              bottom: 10,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: GestureDetector(
-                  onTap: () => _nextQuestion(),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.amber,
-                        width: 1.5,
-                        style: BorderStyle.solid,
-                      ),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width * 0.85,
-                        decoration: BoxDecoration(
-                            color: Colors.amber,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Center(
-                            child: Text(
-                          'Next',
-                          style: GoogleFonts.portLligatSans(
-                            textStyle: Theme.of(context).textTheme.headline1,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                          ),
-                        )),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            )
-            : Container(),
           ],
         ),
       ),
