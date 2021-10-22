@@ -21,9 +21,16 @@ class Quiz extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Question(
-          text: questions[questionIndex]['questionText'] as String,
-        ),
+        ...(questions[questionIndex]['questionText'] as List<Map<String, Object>>)
+            .map((question) {
+              return Question(
+                text: question['text'] as String,
+              );
+            },
+            ),
+        // Question(
+        //   text: questions[questionIndex]['questionText'] as String,
+        // ),
         SizedBox(
           height: 30,
         ),
@@ -33,7 +40,7 @@ class Quiz extends StatelessWidget {
             children: [
               Answer(
                   handler: () {
-                    answer(answerChoice['score'], answerChoice['text'] as String);
+                    answer(answerChoice['score'], answerChoice['text'] as String, questionIndex);
                     },
                   answer: answerChoice['text'] as String),
               SizedBox(

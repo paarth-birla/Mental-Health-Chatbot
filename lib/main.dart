@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mental_fitness_solution/pages/dashboard.dart';
+import 'package:mental_fitness_solution/pages/signup.dart';
 import 'package:mental_fitness_solution/pages/survey.dart';
 import 'package:mental_fitness_solution/pages/welcome.dart';
 import 'package:mental_fitness_solution/widgets/bottom_navbar.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: WelcomePage(),
+      home: SignUpPage(),
     );
   }
 }

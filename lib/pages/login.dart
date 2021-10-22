@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mental_fitness_solution/backend/apis.dart';
 import 'package:mental_fitness_solution/pages/dashboard.dart';
 import 'package:mental_fitness_solution/pages/questions_trail_ui.dart';
 import 'package:mental_fitness_solution/pages/signup.dart';
@@ -18,6 +20,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+  bool _validateEmail = false;
+  bool _validatePassword = false;
+
   Widget _backButton() {
     return GestureDetector(
       onTap: () {
@@ -79,7 +86,9 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _entryField(String title, {bool isPassword = false}) {
+  Widget _entryField(
+      String title, TextEditingController controller, bool validate,
+      {bool isPassword = false}) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -93,11 +102,13 @@ class _LoginPageState extends State<LoginPage> {
             height: 10,
           ),
           TextField(
+            controller: controller,
             obscureText: isPassword,
             decoration: InputDecoration(
               border: InputBorder.none,
               fillColor: Color(0xfff3f3f4),
               filled: true,
+              errorText: validate ? 'Error' : null,
             ),
           ),
         ],
@@ -108,12 +119,32 @@ class _LoginPageState extends State<LoginPage> {
   Widget _submitButton() {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Survey(),
-          ),
-        );
+        setState(() {
+          _email.text.isEmpty ? _validateEmail = true : _validateEmail = false;
+
+          _email.text.contains('@')
+              ? _validateEmail = false
+              : _validateEmail = true;
+
+          _password.text.isEmpty
+              ? _validatePassword = true
+              : _validatePassword = false;
+
+          _password.text.length > 5
+              ? _validatePassword = false
+              : _validatePassword = true;
+        });
+        print(_email.text);
+        print(_password.text);
+
+        if (_validateEmail == false && _validatePassword == false) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Survey(),
+            ),
+          );
+        }
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -210,10 +241,26 @@ class _LoginPageState extends State<LoginPage> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        _entryField("Email id"),
-        _entryField("Password", isPassword: true),
+        _entryField("Email id", _email, _validateEmail),
+        _entryField("Password", _password, _validatePassword, isPassword: true),
       ],
     );
+  }
+
+  Future<void> loginUser(String email, String password) async {
+    String url = '1234567890';
+    var response = await APIS.getResponse(url);
+
+    if (response != 'Failed') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Survey(),
+        ),
+      );
+    } else {
+      print('Error');
+    }
   }
 
   @override
@@ -242,6 +289,63 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(height: height * .2),
                     _title(),
                     SizedBox(height: 50),
+                    // Column(
+                    //   children: [
+                    //     Container(
+                    //       margin: EdgeInsets.symmetric(vertical: 10),
+                    //       child: Column(
+                    //         crossAxisAlignment: CrossAxisAlignment.start,
+                    //         children: <Widget>[
+                    //           Text(
+                    //             'Email Id',
+                    //             style: TextStyle(
+                    //                 fontWeight: FontWeight.bold, fontSize: 20),
+                    //           ),
+                    //           SizedBox(
+                    //             height: 10,
+                    //           ),
+                    //           TextField(
+                    //             obscureText: false,
+                    //             decoration: InputDecoration(
+                    //               border: InputBorder.none,
+                    //               fillColor: Color(0xfff3f3f4),
+                    //               filled: true,
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     SizedBox(
+                    //       height: 10,
+                    //     ),
+                    //     Container(
+                    //       margin: EdgeInsets.symmetric(vertical: 10),
+                    //       child: Column(
+                    //         crossAxisAlignment: CrossAxisAlignment.start,
+                    //         children: <Widget>[
+                    //           Text(
+                    //             'Password',
+                    //             style: TextStyle(
+                    //               fontWeight: FontWeight.bold,
+                    //               fontSize: 20,
+                    //             ),
+                    //           ),
+                    //           SizedBox(
+                    //             height: 10,
+                    //           ),
+                    //           TextField(
+                    //             obscureText: true,
+                    //             decoration: InputDecoration(
+                    //               border: InputBorder.none,
+                    //               fillColor: Color(0xfff3f3f4),
+                    //               filled: true,
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     _emailPasswordWidget(),
                     SizedBox(height: 20),
                     _submitButton(),

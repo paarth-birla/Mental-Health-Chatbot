@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:mental_fitness_solution/backend/apis.dart';
 import 'package:mental_fitness_solution/pages/login.dart';
+import 'package:mental_fitness_solution/pages/survey.dart';
 import 'package:mental_fitness_solution/pages/welcome.dart';
 import 'package:mental_fitness_solution/widgets/bezier_container.dart';
 
@@ -15,6 +17,14 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  TextEditingController _name = TextEditingController();
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+  bool _pressed = false;
+  bool _validateName = false;
+  bool _validateEmail = false;
+  bool _validatePassword = false;
+
   Widget _backButton() {
     return GestureDetector(
       onTap: () {
@@ -63,7 +73,51 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _entryField(String title, {bool isPassword = false}) {
+  String emailValidation(TextEditingController controller, bool validate) {
+    if (controller.text.isEmpty) {
+      validate = false;
+      return 'Email cannot be empty';
+    } else if (!controller.text.contains('@')) {
+      validate = false;
+      return 'Email contains "@"';
+    }
+    else{
+      validate = true;
+      return '';
+    }
+    
+  }
+
+  String passwordValidation(TextEditingController controller, bool validate) {
+    if (controller.text.isEmpty) {
+      validate = false;
+      return 'Password cannot be empty';
+    } else if (controller.text.length < 5) {
+      validate = false;
+      return 'Paasword must be atleast 6 characters';
+    }
+
+    else{
+      validate = true;
+      return '';
+    }
+  }
+
+  String nameValidation(TextEditingController controller, bool validate) {
+    if (controller.text.isEmpty) {
+      validate = false;
+      return 'Name cannot be empty';
+    }
+
+    else{
+      validate = true;
+      return '';
+    }
+  }
+
+  Widget _entryField(
+      String title, TextEditingController controller, Function function, bool validate,
+      {bool isPassword = false}) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -77,42 +131,66 @@ class _SignUpPageState extends State<SignUpPage> {
             height: 10,
           ),
           TextField(
-              obscureText: isPassword,
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Color(0xfff3f3f4),
-                  filled: true))
+            controller: controller,
+            obscureText: isPassword,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              fillColor: Color(0xfff3f3f4),
+              filled: true,
+              errorText: _pressed ? function(controller, validate) : null,
+            ),
+          ),
         ],
       ),
     );
   }
 
   Widget _submitButton() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.symmetric(vertical: 15),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(5)),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-              color: Colors.grey.shade200,
-              offset: Offset(2, 4),
-              blurRadius: 5,
-              spreadRadius: 2)
-        ],
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: [
-            Color(0xffa192ff),
-            Color(0xffb7acff),
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _pressed = true;
+        });
+        print(_validateName);
+        print(_validateEmail);
+        print(_validatePassword);
+        
+        if(_validateName == true  && _validateEmail == true && _validatePassword == true)
+        {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Survey(),
+            ),
+          );
+        }
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.symmetric(vertical: 15),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Colors.grey.shade200,
+                offset: Offset(2, 4),
+                blurRadius: 5,
+                spreadRadius: 2)
           ],
+          gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [
+              Color(0xffa192ff),
+              Color(0xffb7acff),
+            ],
+          ),
         ),
-      ),
-      child: Text(
-        'Register Now',
-        style: TextStyle(fontSize: 20, color: Colors.white),
+        child: Text(
+          'Register Now',
+          style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
       ),
     );
   }
@@ -175,11 +253,28 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        _entryField("Name"),
-        _entryField("Email id"),
-        _entryField("Password", isPassword: true),
+        _entryField("Name", _name, nameValidation, _validateName),
+        _entryField("Email id", _email, emailValidation, _validateEmail),
+        _entryField("Password", _password, passwordValidation, _validatePassword,
+            isPassword: true),
       ],
     );
+  }
+
+  Future<void> signupUser(String name, String email, String password) async {
+    String url = '1234567890';
+    var response = await APIS.getResponse(url);
+
+    if (response != 'Failed') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Survey(),
+        ),
+      );
+    } else {
+      print('Error');
+    }
   }
 
   @override

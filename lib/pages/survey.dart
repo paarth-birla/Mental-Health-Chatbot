@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mental_fitness_solution/backend/apis.dart';
 import 'package:mental_fitness_solution/models/quiz.dart';
 import 'package:mental_fitness_solution/pages/welcome.dart';
 
@@ -15,54 +16,154 @@ class Survey extends StatefulWidget {
 class _SurveyState extends State<Survey> {
   final _questions = [
     {
-      'questionText': 'Q1. Who created Flutter?',
+      'questionText': [
+        {
+          'text': 'Q1. How often are you stressed?',
+          'id': 0,
+        }
+      ],
       'answers': [
-        {'text': 'Facebook', 'score': -2},
-        {'text': 'Adobe', 'score': -2},
-        {'text': 'Google', 'score': 10},
-        {'text': 'Microsoft', 'score': -2},
+        {'text': 'All the time', 'score': 5},
+        {'text': 'Sometimes', 'score': 1},
+        {'text': 'Rarely', 'score': 0},
+        {'text': 'Often', 'score': 3},
       ],
     },
     {
-      'questionText': 'Q2. What is Flutter?',
+      'questionText': [
+        {
+          'text': 'Q2. Average Sleep hours in a day',
+          'id': 1,
+        }
+      ],
       'answers': [
-        {'text': 'Android Development Kit', 'score': -2},
-        {'text': 'IOS Development Kit', 'score': -2},
-        {'text': 'Web Development Kit', 'score': -2},
+        {'text': '7-10 hrs', 'score': 0},
+        {'text': '5-6 hrs', 'score': 2},
+        {'text': '<5 hrs', 'score': 4},
+      ],
+    },
+    {
+      'questionText': [
+        {
+          'text': 'Q3. Do you consume any intoxicant to overcome your problem?',
+          'id': 2,
+        }
+      ],
+      'answers': [
+        {'text': 'Yes, Often', 'score': 4},
+        {'text': 'Yes, Rarely', 'score': 2},
+        {'text': 'No', 'score': 0},
+      ],
+    },
+    {
+      'questionText': [
         {
           'text':
-              'SDK to build beautiful IOS, Android, Web & Desktop Native Apps',
-          'score': 10
-        },
+              'Q4. During past 4 weeks, how often have/has your emotional problems interferred with your social activities?',
+          'id': 3,
+        }
+      ],
+      'answers': [
+        {'text': 'All the time', 'score': 5},
+        {'text': 'Sometimes', 'score': 1},
+        {'text': 'Rarely', 'score': 0},
+        {'text': 'Often', 'score': 3},
       ],
     },
     {
-      'questionText': ' Q3. Which programing language is used by Flutter',
-      'answers': [
-        {'text': 'Ruby', 'score': -2},
-        {'text': 'Dart', 'score': 10},
-        {'text': 'C++', 'score': -2},
-        {'text': 'Kotlin', 'score': -2},
-      ],
-    },
-    {
-      'questionText': 'Q4. Who created Dart programing language?',
-      'answers': [
-        {'text': 'Lars Bak and Kasper Lund', 'score': 10},
-        {'text': 'Brendan Eich', 'score': -2},
-        {'text': 'Bjarne Stroustrup', 'score': -2},
-        {'text': 'Jeremy Ashkenas', 'score': -2},
-      ],
-    },
-    {
-      'questionText':
-          'Q5. Is Flutter for Web and Desktop available in stable version?',
-      'answers': [
+      'questionText': [
         {
-          'text': 'Yes',
-          'score': -2,
-        },
-        {'text': 'No', 'score': 10},
+          'text':
+              'Q5. During past 4 weeks, have you had any problems with your work or daily life due to physicial health?',
+          'id': 4,
+        }
+      ],
+      'answers': [
+        {'text': 'Yes', 'score': 4},
+        {'text': 'No', 'score': 0},
+        {'text': 'Maybe', 'score': 2},
+      ],
+    },
+    {
+      'questionText': [
+        {
+          'text':
+              'Q6. Have you ever experienced an "attack" of fear, anxiety or panic?',
+          'id': 5,
+        }
+      ],
+      'answers': [
+        {'text': 'Yes, recently', 'score': 5},
+        {'text': 'Long time ago', 'score': 2},
+        {'text': 'Never', 'score': 0},
+      ],
+    },
+    {
+      'questionText': [
+        {
+          'text':
+              'Q7. Have you ever considered consulting about mental health?',
+          'id': 6,
+        }
+      ],
+      'answers': [
+        {'text': '1 month ago', 'score': 4},
+        {'text': '6 months ago', 'score': 2},
+        {'text': '1 year ago', 'score': 1},
+        {'text': 'Never', 'score': 0},
+      ],
+    },
+    {
+      'questionText': [
+        {
+          'text': 'Q8. How did your appetite changed over past few weeks?',
+          'id': 7,
+        }
+      ],
+      'answers': [
+        {'text': 'Reduced', 'score': 3},
+        {'text': 'Increased', 'score': 3},
+        {'text': 'Unaffected', 'score': 0},
+      ],
+    },
+    {
+      'questionText': [
+        {
+          'text':
+              'Q9. How often you express your feelings with your closed ones?',
+          'id': 8,
+        }
+      ],
+      'answers': [
+        {'text': 'Always', 'score': 1},
+        {'text': 'Sometimes', 'score': 2},
+        {'text': 'Not at all', 'score': 4},
+      ],
+    },
+    {
+      'questionText': [
+        {
+          'text':
+              'Q10. Over the past month, how frequently did you feel lonely?',
+          'id': 9,
+        }
+      ],
+      'answers': [
+        {'text': 'Often', 'score': 4},
+        {'text': 'Rarely', 'score': 1},
+        {'text': 'Never', 'score': 0},
+      ],
+    },
+    {
+      'questionText': [
+        {
+          'text': 'Q11. Did you get any suicidal thoughts lately?',
+          'id': 10,
+        }
+      ],
+      'answers': [
+        {'text': 'Yes', 'score': 5},
+        {'text': 'No', 'score': 0},
       ],
     },
   ];
@@ -77,8 +178,13 @@ class _SurveyState extends State<Survey> {
     });
   }
 
-  void _answer(int score, String answer) {
-    _totalScore[answer] = score;
+  void _answer(int score, String answer, int questionCode) {
+    var result = {};
+    // _totalScore[questionCode] = answer;
+    result[answer] = score;
+    _totalScore[questionCode]= result;
+    // _totalScore.addEntries(result);
+    // print(_totalScore);
     setState(() {
       _questionIndex += 1;
     });
@@ -90,6 +196,24 @@ class _SurveyState extends State<Survey> {
     });
   }
 
+  Future<void> passResult(var totalScore) async
+  {
+    String url = '1234567890';
+    var response = await APIS.getResponse(url);
+
+    if (response != 'Failed') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Survey(),
+        ),
+      );
+    }
+    else
+    {
+      print('Error');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
