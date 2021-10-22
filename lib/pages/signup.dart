@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:mental_fitness_solution/backend/apis.dart';
+import 'package:mental_fitness_solution/main.dart';
 import 'package:mental_fitness_solution/pages/login.dart';
 import 'package:mental_fitness_solution/pages/survey.dart';
 import 'package:mental_fitness_solution/pages/welcome.dart';
@@ -20,10 +21,11 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController _name = TextEditingController();
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
-  bool _pressed = false;
   bool _validateName = false;
   bool _validateEmail = false;
   bool _validatePassword = false;
+
+  var details = {};
 
   Widget _backButton() {
     return GestureDetector(
@@ -73,50 +75,42 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  String emailValidation(TextEditingController controller, bool validate) {
-    if (controller.text.isEmpty) {
-      validate = false;
-      return 'Email cannot be empty';
-    } else if (!controller.text.contains('@')) {
-      validate = false;
-      return 'Email contains "@"';
-    }
-    else{
-      validate = true;
-      return '';
-    }
-    
-  }
+  // String emailValidation(TextEditingController controller, bool validate) {
+  //   if (controller.text.isEmpty) {
+  //     return 'Email cannot be empty';
+  //   } else if (!controller.text.contains('@')) {
+  //     return 'Email should contain "@"';
+  //   }
+  //   else{
+  //     return '';
+  //   }
 
-  String passwordValidation(TextEditingController controller, bool validate) {
-    if (controller.text.isEmpty) {
-      validate = false;
-      return 'Password cannot be empty';
-    } else if (controller.text.length < 5) {
-      validate = false;
-      return 'Paasword must be atleast 6 characters';
-    }
+  // }
 
-    else{
-      validate = true;
-      return '';
-    }
-  }
+  // String passwordValidation(TextEditingController controller, bool validate) {
+  //   if (controller.text.isEmpty) {
+  //     return 'Password cannot be empty';
+  //   } else if (controller.text.length < 5) {
+  //     return 'Paasword must be atleast 6 characters';
+  //   }
 
-  String nameValidation(TextEditingController controller, bool validate) {
-    if (controller.text.isEmpty) {
-      validate = false;
-      return 'Name cannot be empty';
-    }
+  //   else{
+  //     return '';
+  //   }
+  // }
 
-    else{
-      validate = true;
-      return '';
-    }
-  }
+  // String nameValidation(TextEditingController controller, bool validate) {
+  //   if (controller.text.isEmpty) {
+  //     return 'Name cannot be empty';
+  //   }
+
+  //   else{
+  //     return '';
+  //   }
+  // }
 
   Widget _entryField(
-      String title, TextEditingController controller, Function function, bool validate,
+      String title, TextEditingController controller, bool validate,
       {bool isPassword = false}) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -137,7 +131,7 @@ class _SignUpPageState extends State<SignUpPage> {
               border: InputBorder.none,
               fillColor: Color(0xfff3f3f4),
               filled: true,
-              errorText: _pressed ? function(controller, validate) : null,
+              errorText: validate ? 'Error' : null,
             ),
           ),
         ],
@@ -147,22 +141,36 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget _submitButton() {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         setState(() {
-          _pressed = true;
+          _name.text.isEmpty ? _validateName = true : _validateName = false;
+
+          _email.text.isEmpty ? _validateEmail = true : _validateEmail = false;
+
+          _email.text.contains('@')
+              ? _validateEmail = false
+              : _validateEmail = true;
+
+          _password.text.isEmpty
+              ? _validatePassword = true
+              : _validatePassword = false;
+
+          _password.text.length > 5
+              ? _validatePassword = false
+              : _validatePassword = true;
         });
-        print(_validateName);
-        print(_validateEmail);
-        print(_validatePassword);
-        
-        if(_validateName == true  && _validateEmail == true && _validatePassword == true)
-        {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Survey(),
-            ),
-          );
+
+        if (_validateName == false &&
+            _validateEmail == false &&
+            _validatePassword == false) {
+          print(details);
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (context) => Survey(),
+          //   ),
+          // );
+          await signupUser(_name.text, _email.text, _password.text);
         }
       },
       child: Container(
@@ -253,19 +261,23 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        _entryField("Name", _name, nameValidation, _validateName),
-        _entryField("Email id", _email, emailValidation, _validateEmail),
-        _entryField("Password", _password, passwordValidation, _validatePassword,
-            isPassword: true),
+        _entryField("Name", _name, _validateName),
+        _entryField("Email id", _email, _validateEmail),
+        _entryField("Password", _password, _validatePassword, isPassword: true),
       ],
     );
   }
 
   Future<void> signupUser(String name, String email, String password) async {
-    String url = '1234567890';
-    var response = await APIS.getResponse(url);
+    var details = {};
+    details['name'] = _name.text;
+    details['email'] = _email.text;
+    details['password'] = _password.text;
+    String url = 'https://chatbot-backend-mhcb.herokuapp.com/signup';
+    var response = await APIS.getResponse(url, details);
 
     if (response != 'Failed') {
+      Final.userEmail = email;
       Navigator.push(
         context,
         MaterialPageRoute(

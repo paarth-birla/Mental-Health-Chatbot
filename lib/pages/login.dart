@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mental_fitness_solution/backend/apis.dart';
+import 'package:mental_fitness_solution/main.dart';
 import 'package:mental_fitness_solution/pages/dashboard.dart';
 import 'package:mental_fitness_solution/pages/questions_trail_ui.dart';
 import 'package:mental_fitness_solution/pages/signup.dart';
@@ -118,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _submitButton() {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         setState(() {
           _email.text.isEmpty ? _validateEmail = true : _validateEmail = false;
 
@@ -134,16 +135,16 @@ class _LoginPageState extends State<LoginPage> {
               ? _validatePassword = false
               : _validatePassword = true;
         });
-        print(_email.text);
-        print(_password.text);
 
         if (_validateEmail == false && _validatePassword == false) {
+          Final.userEmail = _email.text;
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => Survey(),
             ),
           );
+          // await loginUser(_email.text, _password.text);
         }
       },
       child: Container(
@@ -248,10 +249,15 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> loginUser(String email, String password) async {
-    String url = '1234567890';
-    var response = await APIS.getResponse(url);
+    var details = {};
+    details['email'] = _email.text;
+    details['password'] = _password.text;
+    print(details);
+    String url = 'https://chatbot-backend-mhcb.herokuapp.com/signin';
+    var response = await APIS.getResponse(url, details);
 
     if (response != 'Failed') {
+      Final.userEmail = email;
       Navigator.push(
         context,
         MaterialPageRoute(

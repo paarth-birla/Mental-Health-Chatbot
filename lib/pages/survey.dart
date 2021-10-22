@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mental_fitness_solution/backend/apis.dart';
+import 'package:mental_fitness_solution/main.dart';
 import 'package:mental_fitness_solution/models/quiz.dart';
+import 'package:mental_fitness_solution/pages/dashboard.dart';
 import 'package:mental_fitness_solution/pages/welcome.dart';
 
 class Survey extends StatefulWidget {
@@ -23,10 +25,10 @@ class _SurveyState extends State<Survey> {
         }
       ],
       'answers': [
-        {'text': 'All the time', 'score': 5},
-        {'text': 'Sometimes', 'score': 1},
-        {'text': 'Rarely', 'score': 0},
-        {'text': 'Often', 'score': 3},
+        {'text': 'All the time', 'id': 0},
+        {'text': 'Sometimes', 'id': 1},
+        {'text': 'Rarely', 'id': 2},
+        {'text': 'Often', 'id': 3},
       ],
     },
     {
@@ -37,9 +39,9 @@ class _SurveyState extends State<Survey> {
         }
       ],
       'answers': [
-        {'text': '7-10 hrs', 'score': 0},
-        {'text': '5-6 hrs', 'score': 2},
-        {'text': '<5 hrs', 'score': 4},
+        {'text': '7-10 hrs', 'id': 0},
+        {'text': '5-6 hrs', 'id': 1},
+        {'text': '<5 hrs', 'id': 2},
       ],
     },
     {
@@ -50,9 +52,9 @@ class _SurveyState extends State<Survey> {
         }
       ],
       'answers': [
-        {'text': 'Yes, Often', 'score': 4},
-        {'text': 'Yes, Rarely', 'score': 2},
-        {'text': 'No', 'score': 0},
+        {'text': 'Yes, Often', 'id': 0},
+        {'text': 'Yes, Rarely', 'id': 1},
+        {'text': 'No', 'id': 2},
       ],
     },
     {
@@ -64,10 +66,10 @@ class _SurveyState extends State<Survey> {
         }
       ],
       'answers': [
-        {'text': 'All the time', 'score': 5},
-        {'text': 'Sometimes', 'score': 1},
-        {'text': 'Rarely', 'score': 0},
-        {'text': 'Often', 'score': 3},
+        {'text': 'All the time', 'id': 0},
+        {'text': 'Sometimes', 'id': 1},
+        {'text': 'Rarely', 'id': 2},
+        {'text': 'Often', 'id': 3},
       ],
     },
     {
@@ -79,9 +81,9 @@ class _SurveyState extends State<Survey> {
         }
       ],
       'answers': [
-        {'text': 'Yes', 'score': 4},
-        {'text': 'No', 'score': 0},
-        {'text': 'Maybe', 'score': 2},
+        {'text': 'Yes', 'id': 0},
+        {'text': 'No', 'id': 1},
+        {'text': 'Maybe', 'id': 2},
       ],
     },
     {
@@ -93,9 +95,9 @@ class _SurveyState extends State<Survey> {
         }
       ],
       'answers': [
-        {'text': 'Yes, recently', 'score': 5},
-        {'text': 'Long time ago', 'score': 2},
-        {'text': 'Never', 'score': 0},
+        {'text': 'Yes, recently', 'id': 0},
+        {'text': 'Long time ago', 'id': 1},
+        {'text': 'Never', 'id': 2},
       ],
     },
     {
@@ -107,10 +109,10 @@ class _SurveyState extends State<Survey> {
         }
       ],
       'answers': [
-        {'text': '1 month ago', 'score': 4},
-        {'text': '6 months ago', 'score': 2},
-        {'text': '1 year ago', 'score': 1},
-        {'text': 'Never', 'score': 0},
+        {'text': '1 month ago', 'id': 0},
+        {'text': '6 months ago', 'id': 1},
+        {'text': '1 year ago', 'id': 2},
+        {'text': 'Never', 'id': 3},
       ],
     },
     {
@@ -121,9 +123,9 @@ class _SurveyState extends State<Survey> {
         }
       ],
       'answers': [
-        {'text': 'Reduced', 'score': 3},
-        {'text': 'Increased', 'score': 3},
-        {'text': 'Unaffected', 'score': 0},
+        {'text': 'Reduced', 'id': 0},
+        {'text': 'Increased', 'id': 1},
+        {'text': 'Unaffected', 'id': 2},
       ],
     },
     {
@@ -135,9 +137,9 @@ class _SurveyState extends State<Survey> {
         }
       ],
       'answers': [
-        {'text': 'Always', 'score': 1},
-        {'text': 'Sometimes', 'score': 2},
-        {'text': 'Not at all', 'score': 4},
+        {'text': 'Always', 'id': 0},
+        {'text': 'Sometimes', 'id': 1},
+        {'text': 'Not at all', 'id': 2},
       ],
     },
     {
@@ -149,9 +151,9 @@ class _SurveyState extends State<Survey> {
         }
       ],
       'answers': [
-        {'text': 'Often', 'score': 4},
-        {'text': 'Rarely', 'score': 1},
-        {'text': 'Never', 'score': 0},
+        {'text': 'Often', 'id': 0},
+        {'text': 'Rarely', 'id': 1},
+        {'text': 'Never', 'id': 2},
       ],
     },
     {
@@ -162,14 +164,15 @@ class _SurveyState extends State<Survey> {
         }
       ],
       'answers': [
-        {'text': 'Yes', 'score': 5},
-        {'text': 'No', 'score': 0},
+        {'text': 'Yes', 'id': 0},
+        {'text': 'No', 'id': 1},
       ],
     },
   ];
 
   var _questionIndex = 0;
   var _totalScore = {};
+  var _response = {};
 
   void _resetSurvey() {
     setState(() {
@@ -178,11 +181,11 @@ class _SurveyState extends State<Survey> {
     });
   }
 
-  void _answer(int score, String answer, int questionCode) {
-    var result = {};
+  void _answer(int id, String answer, int questionCode) {
+    // var result = {};
     // _totalScore[questionCode] = answer;
-    result[answer] = score;
-    _totalScore[questionCode]= result;
+    // result[answer] = id;
+    _totalScore[questionCode.toString()]= id.toString();
     // _totalScore.addEntries(result);
     // print(_totalScore);
     setState(() {
@@ -198,14 +201,16 @@ class _SurveyState extends State<Survey> {
 
   Future<void> passResult(var totalScore) async
   {
-    String url = '1234567890';
-    var response = await APIS.getResponse(url);
+    _response[Final.userEmail] = totalScore;
+    print(_response);
+    String url = 'https://chatbot-backend-mhcb.herokuapp.com/response';
+    var response = await APIS.getResponse(url, _response);
 
     if (response != 'Failed') {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => Survey(),
+          builder: (context) => Dashboard(),
         ),
       );
     }
@@ -270,16 +275,11 @@ class _SurveyState extends State<Survey> {
                                           width: 400,
                                           height: 60,
                                           child: GestureDetector(
-                                            onTap: () {
-                                              print(_totalScore);
+                                            onTap: () async {
+                                              // print(_totalScore);
+                                              await passResult(_totalScore);
                                               _resetSurvey();
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      WelcomePage(),
-                                                ),
-                                              );
+                                              
                                             },
                                             child: Container(
                                               decoration: BoxDecoration(

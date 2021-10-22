@@ -3,9 +3,10 @@ import 'package:http/http.dart' as http;
 
 class APIS
 {
-  static Future<dynamic> getResponse(String url) async
+  static Future<dynamic> getResponse(String url, var body) async
   {
-    http.Response response = await http.get(Uri.parse(url));
+    http.Response response = await http.post(Uri.parse(url),
+    body: body);
 
     try {
       if(response.statusCode == 200)

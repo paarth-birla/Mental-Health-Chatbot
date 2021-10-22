@@ -40,7 +40,7 @@ class Quiz extends StatelessWidget {
             children: [
               Answer(
                   handler: () {
-                    answer(answerChoice['score'], answerChoice['text'] as String, questionIndex);
+                    answer(answerChoice['id'], answerChoice['text'] as String, questionIndex);
                     },
                   answer: answerChoice['text'] as String),
               SizedBox(

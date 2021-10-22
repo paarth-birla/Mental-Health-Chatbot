@@ -26,7 +26,12 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: SignUpPage(),
+      home: WelcomePage(),
     );
   }
+}
+
+class Final
+{
+  static var userEmail;
 }
