@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:mental_fitness_solution/backend/apis.dart';
 import 'package:mental_fitness_solution/main.dart';
@@ -273,10 +275,12 @@ class _SignUpPageState extends State<SignUpPage> {
     details['name'] = _name.text;
     details['email'] = _email.text;
     details['password'] = _password.text;
+    // print(jsonEncode(details));
     String url = 'https://chatbot-backend-mhcb.herokuapp.com/signup';
-    var response = await APIS.getResponse(url, details);
-
+    var response = await APIS.getResponse(url, jsonEncode(details));
+    // print('response: $response');
     if (response != 'Failed') {
+      // print('Called');
       Final.userEmail = email;
       Navigator.push(
         context,

@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mental_fitness_solution/backend/apis.dart';
@@ -7,6 +9,7 @@ import 'package:mental_fitness_solution/main.dart';
 import 'package:mental_fitness_solution/models/quiz.dart';
 import 'package:mental_fitness_solution/pages/dashboard.dart';
 import 'package:mental_fitness_solution/pages/welcome.dart';
+import 'package:mental_fitness_solution/widgets/bottom_navbar.dart';
 
 class Survey extends StatefulWidget {
   const Survey({Key? key}) : super(key: key);
@@ -185,7 +188,7 @@ class _SurveyState extends State<Survey> {
     // var result = {};
     // _totalScore[questionCode] = answer;
     // result[answer] = id;
-    _totalScore[questionCode.toString()]= id.toString();
+    _totalScore['$questionCode']= '$id';
     // _totalScore.addEntries(result);
     // print(_totalScore);
     setState(() {
@@ -201,16 +204,18 @@ class _SurveyState extends State<Survey> {
 
   Future<void> passResult(var totalScore) async
   {
-    _response[Final.userEmail] = totalScore;
-    print(_response);
+    _response["${Final.userEmail}"] = totalScore;
+    var result = jsonEncode(_response);
+    print(result);
     String url = 'https://chatbot-backend-mhcb.herokuapp.com/response';
-    var response = await APIS.getResponse(url, _response);
+    var response = await APIS.getResponse(url, result);
 
     if (response != 'Failed') {
+      // print(response);
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => Dashboard(),
+          builder: (context) => NavBar(),
         ),
       );
     }

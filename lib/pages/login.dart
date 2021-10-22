@@ -10,6 +10,7 @@ import 'package:mental_fitness_solution/pages/signup.dart';
 import 'package:mental_fitness_solution/pages/survey.dart';
 import 'package:mental_fitness_solution/pages/welcome.dart';
 import 'package:mental_fitness_solution/widgets/bezier_container.dart';
+import 'package:mental_fitness_solution/widgets/pop_up.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, this.title}) : super(key: key);
@@ -137,14 +138,14 @@ class _LoginPageState extends State<LoginPage> {
         });
 
         if (_validateEmail == false && _validatePassword == false) {
-          Final.userEmail = _email.text;
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Survey(),
-            ),
-          );
-          // await loginUser(_email.text, _password.text);
+          // Final.userEmail = _email.text;
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (context) => Survey(),
+          //   ),
+          // );
+          await loginUser(_email.text, _password.text);
         }
       },
       child: Container(
@@ -255,15 +256,16 @@ class _LoginPageState extends State<LoginPage> {
     print(details);
     String url = 'https://chatbot-backend-mhcb.herokuapp.com/signin';
     var response = await APIS.getResponse(url, details);
-
+    print(response);
     if (response != 'Failed') {
       Final.userEmail = email;
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Survey(),
-        ),
-      );
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) => Survey(),
+      //   ),
+      // );
+      showDialog(context: context, builder: (BuildContext context) => PopUp());
     } else {
       print('Error');
     }
