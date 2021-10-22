@@ -1,9 +1,7 @@
-
-// ignore_for_file: import_of_legacy_library_into_null_safe, prefer_final_fields, prefer_const_constructors
-
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:url_launcher/url_launcher.dart';
 
 class Articles extends StatefulWidget {
@@ -23,7 +21,7 @@ class _ArticlesState extends State<Articles> {
     "Instagram",
   ];
 
-  static Map links = {
+  static Map<String, String> links = {
     "Apple": "https://www.apple.com/in/",
     "Google": "https://www.google.co.in/",
     "Facebook": "https://www.facebook.com/",
@@ -41,12 +39,9 @@ class _ArticlesState extends State<Articles> {
     });
   }
 
-  openUrl(String data) async {
-    if (await canLaunch(links[data])) {
-      await launch(links[data]);
-    } else {
-      throw 'Could not launch url';
-    }
+  openUrl(data) async {
+    String? url = links[data];
+    launch(url!);
   }
 
   @override
@@ -104,3 +99,5 @@ class _ArticlesState extends State<Articles> {
     );
   }
 }
+
+// CheckPoint
