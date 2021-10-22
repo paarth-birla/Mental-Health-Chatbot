@@ -1,16 +1,13 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields, avoid_print
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mental_fitness_solution/backend/apis.dart';
 import 'package:mental_fitness_solution/main.dart';
-import 'package:mental_fitness_solution/pages/dashboard.dart';
 import 'package:mental_fitness_solution/pages/signup.dart';
-import 'package:mental_fitness_solution/pages/survey.dart';
 import 'package:mental_fitness_solution/pages/welcome.dart';
 import 'package:mental_fitness_solution/widgets/bezier_container.dart';
 import 'package:mental_fitness_solution/widgets/bottom_navbar.dart';
-import 'package:mental_fitness_solution/widgets/pop_up.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, this.title}) : super(key: key);

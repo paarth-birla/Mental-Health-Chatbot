@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, prefer_const_constructors
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,7 +10,8 @@ class PopUp extends StatelessWidget {
   const PopUp({Key? key}) : super(key: key);
 
   void openWhatsapp() async {
-    await FlutterLaunch.launchWhatsapp(phone: "+917977726430", message: "Hello");
+    await FlutterLaunch.launchWhatsapp(
+        phone: "+917977726430", message: "Hello");
   }
 
   @override
@@ -18,8 +21,7 @@ class PopUp extends StatelessWidget {
         borderRadius: BorderRadius.circular(40),
       ),
       child: Stack(
-        overflow: Overflow.visible,
-        // clipBehavior: Clip.hardEdge,
+        clipBehavior: Clip.none,
         alignment: Alignment.topCenter,
         children: [
           SizedBox(

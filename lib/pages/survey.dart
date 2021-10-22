@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_final_fields, avoid_print
 
 import 'dart:convert';
 
@@ -7,8 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mental_fitness_solution/backend/apis.dart';
 import 'package:mental_fitness_solution/main.dart';
 import 'package:mental_fitness_solution/models/quiz.dart';
-import 'package:mental_fitness_solution/pages/dashboard.dart';
-import 'package:mental_fitness_solution/pages/welcome.dart';
 import 'package:mental_fitness_solution/widgets/bottom_navbar.dart';
 
 class Survey extends StatefulWidget {
@@ -196,11 +194,6 @@ class _SurveyState extends State<Survey> {
     });
   }
 
-  void _nextQuestion() {
-    setState(() {
-      _questionIndex += 1;
-    });
-  }
 
   Future<void> passResult(var totalScore) async
   {
