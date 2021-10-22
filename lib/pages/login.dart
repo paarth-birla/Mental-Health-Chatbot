@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:mental_fitness_solution/backend/apis.dart';
 import 'package:mental_fitness_solution/main.dart';
 import 'package:mental_fitness_solution/pages/dashboard.dart';
-import 'package:mental_fitness_solution/pages/questions_trail_ui.dart';
 import 'package:mental_fitness_solution/pages/signup.dart';
 import 'package:mental_fitness_solution/pages/survey.dart';
 import 'package:mental_fitness_solution/pages/welcome.dart';
 import 'package:mental_fitness_solution/widgets/bezier_container.dart';
+import 'package:mental_fitness_solution/widgets/bottom_navbar.dart';
 import 'package:mental_fitness_solution/widgets/pop_up.dart';
 
 class LoginPage extends StatefulWidget {
@@ -215,7 +215,7 @@ class _LoginPageState extends State<LoginPage> {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-          text: 'd',
+          text: 'Min',
           style: TextStyle(
             fontSize: 50,
             fontWeight: FontWeight.w700,
@@ -223,14 +223,14 @@ class _LoginPageState extends State<LoginPage> {
           ),
           children: [
             TextSpan(
-              text: 'ev',
+              text: 'dD',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 50,
               ),
             ),
             TextSpan(
-              text: 'rnz',
+              text: 'oc',
               style: TextStyle(
                 color: Color(0xffe46b10),
                 fontSize: 50,
@@ -259,13 +259,13 @@ class _LoginPageState extends State<LoginPage> {
     print(response);
     if (response != 'Failed') {
       Final.userEmail = email;
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) => Survey(),
-      //   ),
-      // );
-      showDialog(context: context, builder: (BuildContext context) => PopUp());
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => NavBar(),
+        ),
+      );
+      // showDialog(context: context, builder: (BuildContext context) => PopUp());
     } else {
       print('Error');
     }

@@ -2,9 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mental_fitness_solution/widgets/bottom_navbar.dart';
+import 'package:flutter_launch/flutter_launch.dart';
 
 class PopUp extends StatelessWidget {
   const PopUp({Key? key}) : super(key: key);
+
+  void openWhatsapp() async {
+    await FlutterLaunch.launchWhatsapp(phone: "+917977726430", message: "Hello");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +47,7 @@ class PopUp extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       GestureDetector(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => NavBar(),
-                          ),
-                        ),
+                        onTap: () => openWhatsapp(),
                         child: Container(
                           width: 100,
                           decoration: BoxDecoration(

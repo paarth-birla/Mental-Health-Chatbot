@@ -9,6 +9,7 @@ import 'package:mental_fitness_solution/pages/login.dart';
 import 'package:mental_fitness_solution/pages/survey.dart';
 import 'package:mental_fitness_solution/pages/welcome.dart';
 import 'package:mental_fitness_solution/widgets/bezier_container.dart';
+import 'package:mental_fitness_solution/widgets/bottom_navbar.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key, this.title}) : super(key: key);
@@ -242,19 +243,19 @@ class _SignUpPageState extends State<SignUpPage> {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-          text: 'd',
+          text: 'Min',
           style: TextStyle(
-              fontSize: 30,
+              fontSize: 50,
               fontWeight: FontWeight.w700,
               color: Color(0xffe46b10)),
           children: [
             TextSpan(
-              text: 'ev',
-              style: TextStyle(color: Colors.black, fontSize: 30),
+              text: 'dD',
+              style: TextStyle(color: Colors.black, fontSize: 50),
             ),
             TextSpan(
-              text: 'rnz',
-              style: TextStyle(color: Color(0xffe46b10), fontSize: 30),
+              text: 'oc',
+              style: TextStyle(color: Color(0xffe46b10), fontSize: 50),
             ),
           ]),
     );
@@ -285,7 +286,7 @@ class _SignUpPageState extends State<SignUpPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => Survey(),
+          builder: (context) => NavBar(),
         ),
       );
     } else {
