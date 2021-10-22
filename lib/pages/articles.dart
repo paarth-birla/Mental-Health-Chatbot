@@ -1,4 +1,5 @@
-// ignore_for_file: import_of_legacy_library_into_null_safe
+
+// ignore_for_file: import_of_legacy_library_into_null_safe, prefer_final_fields, prefer_const_constructors
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
