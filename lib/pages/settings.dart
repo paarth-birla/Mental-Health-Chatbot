@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors
-
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
+  const Settings({Key key}) : super(key: key);
 
   @override
   _SettingsState createState() => _SettingsState();

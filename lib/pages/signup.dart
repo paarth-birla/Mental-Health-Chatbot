@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields, avoid_print
-
+// @dart=2.9
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -11,9 +11,9 @@ import 'package:mental_fitness_solution/widgets/bezier_container.dart';
 import 'package:mental_fitness_solution/widgets/bottom_navbar.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key, this.title}) : super(key: key);
+  const SignUpPage({Key key, this.title}) : super(key: key);
 
-  final String? title;
+  final String title;
 
   @override
   _SignUpPageState createState() => _SignUpPageState();

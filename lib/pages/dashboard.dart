@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
+// @dart=2.9
 import 'dart:ui';
 import 'package:flutter/widgets.dart';
 import 'package:mental_fitness_solution/pages/survey.dart';
@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+  const Dashboard({Key key}) : super(key: key);
 
   @override
   _DashboardState createState() => _DashboardState();

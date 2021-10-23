@@ -1,10 +1,11 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Answer extends StatefulWidget {
   final VoidCallback handler;
   final String answer;
-  const Answer({Key? key, required this.handler, required this.answer})
+  const Answer({Key key, @required this.handler, @required this.answer})
       : super(key: key);
 
   @override

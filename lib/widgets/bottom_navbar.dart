@@ -1,19 +1,19 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors
-
+// @dart=2.9
 import 'package:flutter/material.dart';
-import 'package:mental_fitness_solution/pages/articles.dart';
+// import 'package:mental_fitness_solution/pages/articles.dart';
 import 'package:mental_fitness_solution/pages/dashboard.dart';
 import 'package:mental_fitness_solution/pages/settings.dart';
 
 class NavBar extends StatefulWidget {
-  const NavBar({Key? key}) : super(key: key);
+  const NavBar({Key key}) : super(key: key);
 
   @override
   _NavBarState createState() => _NavBarState();
 }
 
 class _NavBarState extends State<NavBar> {
-  late PageController _pageController;
+  PageController _pageController;
   var selectedPage;
 
   @override
@@ -34,7 +34,7 @@ class _NavBarState extends State<NavBar> {
         controller: _pageController,
         children: const [
           Dashboard(),
-          Articles(),
+          // Articles(),
           Settings(),
         ],
       ),

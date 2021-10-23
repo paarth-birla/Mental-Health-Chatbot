@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors
-
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:mental_fitness_solution/models/answer.dart';
 import 'package:mental_fitness_solution/models/question.dart';
@@ -9,10 +9,10 @@ class Quiz extends StatelessWidget {
   final int questionIndex;
   final Function answer;
   const Quiz({
-    Key? key,
-    required this.questions,
-    required this.questionIndex,
-    required this.answer,
+    Key key,
+    @required this.questions,
+    @required this.questionIndex,
+    @required this.answer,
   }) : super(key: key);
 
   @override
