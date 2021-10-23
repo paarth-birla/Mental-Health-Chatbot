@@ -275,7 +275,7 @@ class _SignUpPageState extends State<SignUpPage> {
     details['name'] = _name.text;
     details['email'] = _email.text;
     details['password'] = _password.text;
-    // print(jsonEncode(details));
+    print(jsonEncode(details));
     String url = 'https://chatbot-backend-mhcb.herokuapp.com/signup';
     var response = await APIS.getResponse(url, details);
     // print('response: $response');
