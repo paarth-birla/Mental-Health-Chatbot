@@ -12,7 +12,7 @@ class Articles extends StatefulWidget {
 }
 
 class _ArticlesState extends State<Articles> {
-  TextEditingController _textController = TextEditingController();
+  final TextEditingController _textController = TextEditingController();
 
   static List<String> mainDataList = [
     "Why stress happens and how to manage it",
@@ -121,7 +121,7 @@ class _ArticlesState extends State<Articles> {
           ),
           Expanded(
             child: ListView(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               children: newDataList.map((data) {
                 return ListTile(
                   title: Text(
