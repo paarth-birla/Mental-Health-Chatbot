@@ -296,7 +296,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   void showToast() {
     Fluttertoast.showToast(
-        msg: 'This is toast notification',
+        msg: 'Error in registration. Please try again',
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,

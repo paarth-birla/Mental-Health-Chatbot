@@ -2,6 +2,7 @@
 // @dart=2.9
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mental_fitness_solution/backend/apis.dart';
 import 'package:mental_fitness_solution/main.dart';
 import 'package:mental_fitness_solution/pages/signup.dart';
@@ -253,8 +254,8 @@ class _LoginPageState extends State<LoginPage> {
     // print(details);
     String url = 'https://chatbot-backend-mhcb.herokuapp.com/signin';
     var response = await APIS.getResponse(url, details);
-    // print(response);
-    if (response != 'Failed') {
+    print(response);
+    if (response != 'Failed' && response != 'error') {
       Final.userEmail = email;
       Navigator.push(
         context,
@@ -265,7 +266,18 @@ class _LoginPageState extends State<LoginPage> {
       // showDialog(context: context, builder: (BuildContext context) => PopUp());
     } else {
       print('Error');
+      showToast();
     }
+  }
+
+  void showToast() {
+    Fluttertoast.showToast(
+        msg: 'Error logging in. Please try again.',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.yellow);
   }
 
   @override
