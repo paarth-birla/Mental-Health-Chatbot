@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:mental_fitness_solution/models/answer.dart';
 import 'package:mental_fitness_solution/models/question.dart';
@@ -21,13 +20,15 @@ class Quiz extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        ...(questions[questionIndex]['questionText'] as List<Map<String, Object>>)
-            .map((question) {
-              return Question(
-                text: question['text'] as String,
-              );
-            },
-            ),
+        ...(questions[questionIndex]['questionText']
+                as List<Map<String, Object>>)
+            .map(
+          (question) {
+            return Question(
+              text: question['text'] as String,
+            );
+          },
+        ),
         // Question(
         //   text: questions[questionIndex]['questionText'] as String,
         // ),
@@ -40,8 +41,9 @@ class Quiz extends StatelessWidget {
             children: [
               Answer(
                   handler: () {
-                    answer(answerChoice['id'], answerChoice['text'] as String, questionIndex);
-                    },
+                    answer(answerChoice['id'], answerChoice['text'] as String,
+                        questionIndex);
+                  },
                   answer: answerChoice['text'] as String),
               SizedBox(
                 height: 10,

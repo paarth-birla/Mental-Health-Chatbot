@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors
-
 import 'package:flutter/material.dart';
-import 'package:mental_fitness_solution/pages/articles.dart';
+// import 'package:mental_fitness_solution/pages/articles.dart';
 import 'package:mental_fitness_solution/pages/dashboard.dart';
 import 'package:mental_fitness_solution/pages/settings.dart';
 
@@ -34,7 +33,7 @@ class _NavBarState extends State<NavBar> {
         controller: _pageController,
         children: const [
           Dashboard(),
-          Articles(),
+          // Articles(),
           Settings(),
         ],
       ),

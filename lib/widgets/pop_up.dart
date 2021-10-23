@@ -5,13 +5,27 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mental_fitness_solution/widgets/bottom_navbar.dart';
 import 'package:flutter_launch/flutter_launch.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class PopUp extends StatelessWidget {
+class PopUp extends StatefulWidget {
   const PopUp({Key? key}) : super(key: key);
 
-  void openWhatsapp() async {
-    await FlutterLaunch.launchWhatsapp(
-        phone: "+917977726430", message: "Hello");
+  @override
+  State<PopUp> createState() => _PopUpState();
+}
+
+class _PopUpState extends State<PopUp> {
+  @override
+  initState() {
+    super.initState();
+  }
+
+  void whatsAppOpen() async {
+    var whatsappUrl = "whatsapp://send?phone=+918779629477";
+    await canLaunch(whatsappUrl)
+        ? launch(whatsappUrl)
+        : print(
+            "open whatsapp app link or do a snackbar with notification that there is no whatsapp installed");
   }
 
   @override
@@ -49,7 +63,9 @@ class PopUp extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       GestureDetector(
-                        onTap: () => openWhatsapp(),
+                        onTap: () {
+                          whatsAppOpen();
+                        },
                         child: Container(
                           width: 100,
                           decoration: BoxDecoration(
