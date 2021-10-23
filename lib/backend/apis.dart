@@ -10,30 +10,65 @@ class APIS
     // print('API Call');
     http.Response response = await http.post(Uri.parse(url),
     headers: {
-      "Accept": "application/json",
-      "Content-Type": "application/x-www-form-urlencoded"
+      "Content-Type": "application/json"
+    },
+    body: jsonEncode(body));
+    // body: body);
+    // print(jsonEncode(body));
+    // print(response.statusCode);
+    // print(response.body);
+    // return 'Not Failed';
+    try {
+      if(response.statusCode == 200)
+      {
+        print('Status code 200');
+        String data = response.body;
+        // print(data);
+        // var decode = jsonDecode(data);
+        return data;
+      }
+
+      else{
+        return 'Failed';
+      }
+    } catch (e) {
+      return 'Failed';
+    }
+    // print(response.body);
+    // return response.body;
+  }
+
+  static Future<dynamic> getScore(String url, var body) async
+  {
+    // print('API Call');
+    http.Response response = await http.post(Uri.parse(url),
+    headers: {
+      "Content-Type": "application/json"
     },
     body: body);
-
+    // body: body);
+    // print(jsonEncode(body));
     // print(response.statusCode);
-    // print(response);
+    // print(response.body);
     // return 'Not Failed';
-    // try {
-    //   if(response.statusCode == 200)
-    //   {
-    //     String data = response.body;
-    //     print(data);
-    //     var decode = jsonDecode(data);
-    //     return decode;
-    //   }
+    try {
+      if(response.statusCode == 200)
+      {
+        print('Status code 200');
+        String data = response.body;
+        // print(data);
+        var decode = jsonDecode(data);
+        // print(decode);
+        return decode;
+      }
 
-    //   else{
-    //     return 'Failed';
-    //   }
-    // } catch (e) {
-    //   return 'Failed';
-    // }
-    print(response.body);
-    return response.body;
+      else{
+        return 'Failed';
+      }
+    } catch (e) {
+      return 'Failed';
+    }
+    // print(response.body);
+    // return response.body;
   }
 }

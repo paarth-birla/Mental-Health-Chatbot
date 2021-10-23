@@ -165,7 +165,7 @@ class _SignUpPageState extends State<SignUpPage> {
         if (_validateName == false &&
             _validateEmail == false &&
             _validatePassword == false) {
-          print(details);
+          // print(details);
           // Navigator.push(
           //   context,
           //   MaterialPageRoute(
@@ -277,7 +277,7 @@ class _SignUpPageState extends State<SignUpPage> {
     details['password'] = _password.text;
     // print(jsonEncode(details));
     String url = 'https://chatbot-backend-mhcb.herokuapp.com/signup';
-    var response = await APIS.getResponse(url, jsonEncode(details));
+    var response = await APIS.getResponse(url, details);
     // print('response: $response');
     if (response != 'Failed') {
       // print('Called');

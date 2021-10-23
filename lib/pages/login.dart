@@ -250,10 +250,10 @@ class _LoginPageState extends State<LoginPage> {
     var details = {};
     details['email'] = _email.text;
     details['password'] = _password.text;
-    print(details);
+    // print(details);
     String url = 'https://chatbot-backend-mhcb.herokuapp.com/signin';
     var response = await APIS.getResponse(url, details);
-    print(response);
+    // print(response);
     if (response != 'Failed') {
       Final.userEmail = email;
       Navigator.push(

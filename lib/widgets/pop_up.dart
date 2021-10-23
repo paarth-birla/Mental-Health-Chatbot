@@ -78,7 +78,12 @@ class PopUp extends StatelessWidget {
                         width: 20,
                       ),
                       GestureDetector(
-                        onTap: () => Navigator.pop(context),
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => NavBar(),
+                          ),
+                        ),
                         child: Container(
                           width: 100,
                           decoration: BoxDecoration(

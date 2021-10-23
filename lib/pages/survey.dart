@@ -3,11 +3,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mental_fitness_solution/backend/apis.dart';
 import 'package:mental_fitness_solution/main.dart';
 import 'package:mental_fitness_solution/models/quiz.dart';
 import 'package:mental_fitness_solution/widgets/bottom_navbar.dart';
+import 'package:mental_fitness_solution/widgets/pop_up.dart';
 
 class Survey extends StatefulWidget {
   const Survey({Key? key}) : super(key: key);
@@ -186,7 +188,7 @@ class _SurveyState extends State<Survey> {
     // var result = {};
     // _totalScore[questionCode] = answer;
     // result[answer] = id;
-    _totalScore['$questionCode']= '$id';
+    _totalScore['$questionCode'] = '$id';
     // _totalScore.addEntries(result);
     // print(_totalScore);
     setState(() {
@@ -194,29 +196,37 @@ class _SurveyState extends State<Survey> {
     });
   }
 
-
-  Future<void> passResult(var totalScore) async
-  {
+  Future<void> passResult(var totalScore) async {
     _response["${Final.userEmail}"] = totalScore;
     var result = jsonEncode(_response);
-    print(result);
+    // print(result);
     String url = 'https://chatbot-backend-mhcb.herokuapp.com/response';
-    var response = await APIS.getResponse(url, result);
-
+    var response = await APIS.getScore(url, result);
+    // print('response: $response');
     if (response != 'Failed') {
-      // print(response);
-      Navigator.push(
+      // print(response['score']);
+      if (double.parse(response['score']) > 3) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PopUp(),
+          ),
+        );
+      }
+      else{
+        Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => NavBar(),
         ),
       );
-    }
-    else
-    {
+      }
+      
+    } else {
       print('Error');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -277,7 +287,6 @@ class _SurveyState extends State<Survey> {
                                               // print(_totalScore);
                                               await passResult(_totalScore);
                                               _resetSurvey();
-                                              
                                             },
                                             child: Container(
                                               decoration: BoxDecoration(
