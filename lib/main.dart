@@ -14,6 +14,14 @@ void main() => runApp(const MyApp());
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  static void whatsAppOpen() async {
+    var whatsappUrl = "whatsapp://send?phone=+917977726430";
+    await canLaunch(whatsappUrl)
+        ? launch(whatsappUrl)
+        : print(
+            "open whatsapp app link or do a snackbar with notification that there is no whatsapp installed");
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -32,7 +40,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Final
-{
+class Final {
   static var userEmail;
 }

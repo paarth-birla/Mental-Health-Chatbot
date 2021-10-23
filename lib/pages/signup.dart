@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mental_fitness_solution/backend/apis.dart';
 import 'package:mental_fitness_solution/main.dart';
 import 'package:mental_fitness_solution/pages/login.dart';
@@ -289,8 +290,18 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       );
     } else {
-      print('Error');
+      showToast();
     }
+  }
+
+  void showToast() {
+    Fluttertoast.showToast(
+        msg: 'This is toast notification',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.yellow);
   }
 
   @override

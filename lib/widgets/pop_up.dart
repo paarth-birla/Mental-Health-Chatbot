@@ -7,6 +7,8 @@ import 'package:mental_fitness_solution/widgets/bottom_navbar.dart';
 import 'package:flutter_launch/flutter_launch.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../main.dart';
+
 class PopUp extends StatefulWidget {
   const PopUp({Key? key}) : super(key: key);
 
@@ -20,12 +22,17 @@ class _PopUpState extends State<PopUp> {
     super.initState();
   }
 
-  void whatsAppOpen() async {
-    var whatsappUrl = "whatsapp://send?phone=+918779629477";
-    await canLaunch(whatsappUrl)
-        ? launch(whatsappUrl)
-        : print(
-            "open whatsapp app link or do a snackbar with notification that there is no whatsapp installed");
+  // void whatsAppOpen() async {
+  //   var whatsappUrl = "whatsapp://send?phone=+918779629477";
+  //   await canLaunch(whatsappUrl)
+  //       ? launch(whatsappUrl)
+  //       : print(
+  //           "open whatsapp app link or do a snackbar with notification that there is no whatsapp installed");
+  // }
+
+  openUrl() async {
+    String url = 'https://wa.me/+917977726430';
+    launch(url);
   }
 
   @override
@@ -64,7 +71,13 @@ class _PopUpState extends State<PopUp> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          whatsAppOpen();
+                          openUrl();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => NavBar(),
+                            ),
+                          );
                         },
                         child: Container(
                           width: 100,
