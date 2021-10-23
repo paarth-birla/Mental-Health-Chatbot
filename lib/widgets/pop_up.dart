@@ -25,7 +25,7 @@ class PopUp extends StatelessWidget {
         alignment: Alignment.topCenter,
         children: [
           SizedBox(
-            height: 250,
+            height: MediaQuery.of(context).size.height * 0.45,
             child: Padding(
               padding: const EdgeInsets.fromLTRB(10, 80, 10, 10),
               child: Column(
