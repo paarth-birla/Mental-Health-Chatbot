@@ -22,16 +22,9 @@ class _PopUpState extends State<PopUp> {
     super.initState();
   }
 
-  // void whatsAppOpen() async {
-  //   var whatsappUrl = "whatsapp://send?phone=+918779629477";
-  //   await canLaunch(whatsappUrl)
-  //       ? launch(whatsappUrl)
-  //       : print(
-  //           "open whatsapp app link or do a snackbar with notification that there is no whatsapp installed");
-  // }
 
   openUrl() async {
-    String url = 'https://wa.me/+918779629477';
+    String url = 'https://wa.me/<phone number with international code>';
     launch(url);
   }
 
