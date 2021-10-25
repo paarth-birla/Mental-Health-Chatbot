@@ -1,11 +1,11 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
-// @dart=2.9
+
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:mental_fitness_solution/widgets/custom_clipper.dart';
 
 class BezierContainer extends StatelessWidget {
-  const BezierContainer({Key key, @required this.color1, @required this.color2}) : super(key: key);
+  const BezierContainer({Key? key, required this.color1, required this.color2}) : super(key: key);
   final Color color1;
   final Color color2;
   @override

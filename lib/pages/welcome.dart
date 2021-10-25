@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-// @dart=2.9
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mental_fitness_solution/pages/login.dart';
 // import 'package:mental_fitness_solution/pages/signup.dart';
 
 class WelcomePage extends StatefulWidget {
-  const WelcomePage({Key key, this.title}) : super(key: key);
+  const WelcomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -180,7 +180,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const LoginPage(),
+                        builder: (context) => const LoginPage(title: '',),
                       ),
                     );
                   },

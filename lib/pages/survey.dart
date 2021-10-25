@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_final_fields, avoid_print
-// @dart=2.9
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -12,6 +12,8 @@ import 'package:mental_fitness_solution/widgets/bottom_navbar.dart';
 import 'package:mental_fitness_solution/widgets/pop_up.dart';
 
 class Survey extends StatefulWidget {
+  const Survey({Key? key}) : super(key: key);
+
   // const Survey({Key? key}) : super(key: key);
 
   @override

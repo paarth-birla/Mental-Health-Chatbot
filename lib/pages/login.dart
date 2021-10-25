@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields, avoid_print
-// @dart=2.9
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -11,7 +11,7 @@ import 'package:mental_fitness_solution/widgets/bezier_container.dart';
 import 'package:mental_fitness_solution/widgets/bottom_navbar.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key key, this.title}) : super(key: key);
+  const LoginPage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => WelcomePage(),
+            builder: (context) => WelcomePage(title: '',),
           ),
         );
       },
@@ -180,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
     return GestureDetector(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SignUpPage()));
+            context, MaterialPageRoute(builder: (context) => SignUpPage(title: '',)));
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20),

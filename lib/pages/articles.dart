@@ -12,7 +12,7 @@ class Articles extends StatefulWidget {
 }
 
 class _ArticlesState extends State<Articles> {
-  TextEditingController _textController = TextEditingController();
+  final TextEditingController _textController = TextEditingController();
 
   static List<String> mainDataList = [
     "Why stress happens and how to manage it",

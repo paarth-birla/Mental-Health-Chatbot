@@ -31,7 +31,7 @@ class _PopUpState extends State<PopUp> {
   // }
 
   openUrl() async {
-    String url = 'https://wa.me/+917977726430';
+    String url = 'https://wa.me/+918779629477';
     launch(url);
   }
 

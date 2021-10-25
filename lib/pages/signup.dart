@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields, avoid_print
-// @dart=2.9
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ import 'package:mental_fitness_solution/widgets/bezier_container.dart';
 import 'package:mental_fitness_solution/widgets/bottom_navbar.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key key, this.title}) : super(key: key);
+  const SignUpPage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -37,7 +37,7 @@ class _SignUpPageState extends State<SignUpPage> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => WelcomePage(),
+            builder: (context) => WelcomePage(title: '',),
           ),
         );
       },
@@ -210,7 +210,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return GestureDetector(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginPage()));
+            context, MaterialPageRoute(builder: (context) => LoginPage(title: '',)));
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20),
